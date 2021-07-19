@@ -5,6 +5,8 @@ const router = express.Router()
 
 const Projects = require('./projects-model')
 
+const { checkID } = require('./projects-middleware')
+
 // [GET] /api/projects *** in server.js we have /api/projects and so we don't need to declare it here*** (Returns an array of projects.)
 router.get('/', async (req, res) => {
     Projects.get()
@@ -17,7 +19,7 @@ router.get('/', async (req, res) => {
 })
 
 // [GET] /api/projects:id (Returns the projects object with the specified id)
-router.get('/:id', (req, res) => {
+router.get('/:id', checkID, (req, res) => {
     const { id } = req.params;
     Projects.get(id)
         .then(project => {

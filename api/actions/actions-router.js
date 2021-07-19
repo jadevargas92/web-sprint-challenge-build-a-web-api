@@ -5,6 +5,8 @@ const router = express.Router()
 
 const Actions = require('./actions-model')
 
+const { checkID } = require('./actions-middlware')
+
 // [GET] /api/actions *** in server.js we have /api/actions and so we don't need to declare it here*** (Returns an array of actions.)
 router.get('/', async (req, res) => {
     Actions.get()
@@ -17,7 +19,7 @@ router.get('/', async (req, res) => {
 })
 
 // [GET] /api/actions:id (Returns the actions object with the specified id)
-router.get('/:id', (req, res) => {
+router.get('/:id', checkID, (req, res) => {
     const { id } = req.params;
     Actions.get(id)
         .then(action => {
