@@ -55,7 +55,7 @@ router.put('/:id', async (req, res) => {
     const changes = req.body
 
     try {
-        if (!changes.name || !changes.description || !changes.completed) {
+        if (!changes.name || !changes.description) {
             res.status(400).json({ message: "Please provide name and description for the project" })
         } else {
             const updatedProject = await Projects.update(id, changes)
