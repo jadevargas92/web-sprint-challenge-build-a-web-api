@@ -70,7 +70,7 @@ router.put('/:id', async (req, res) => {
     }
 })
 
-// [DELETE] /api/projects:id (	Removes the project with the specified id and returns the deleted project)
+// [DELETE] /api/projects:id (Removes the project with the specified id and returns no response body)
 router.delete('/:id', async (req, res) => {
     try {
         const { id } = req.params
